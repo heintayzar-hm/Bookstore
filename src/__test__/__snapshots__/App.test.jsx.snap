@@ -1,0 +1,33 @@
+// Vitest Snapshot v1
+
+exports[`App > renders the initial state correctly 1`] = `
+<div>
+  <nav>
+    <h1>
+      BookStore
+    </h1>
+    <div>
+      <ul>
+        <li>
+           
+          <a
+            class=""
+            href="#/books"
+          >
+            Books
+          </a>
+        </li>
+        <li>
+           
+          <a
+            class=""
+            href="#/categories"
+          >
+            Categories
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+`;
