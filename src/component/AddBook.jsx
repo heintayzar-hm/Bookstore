@@ -13,11 +13,11 @@ class AddBook extends React.Component {
     const { addBook } = this.props;
     return (
       <>
-        <article>
-          <h2>Add new book</h2>
+        <article data-testid="form-container">
+          <h2>Add New Book</h2>
           <form>
-            <input type="text" placeholder="Book Title" value="" required />
-            <input type="text" placeholder="Author" value="" required />
+            <input data-testid="book-title-input" type="text" placeholder="Book Title" value="" required />
+            <input data-testid="author-title-input" type="text" placeholder="Author" value="" required />
           </form>
         </article>
       </>

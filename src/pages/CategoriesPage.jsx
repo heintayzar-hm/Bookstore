@@ -11,7 +11,7 @@ class CategoriesPage extends React.Component {
     return (
       <>
         <div>
-          <button type="button">Check Status</button>
+          <button data-testid="check-status" type="button">Check Status</button>
         </div>
       </>
     );

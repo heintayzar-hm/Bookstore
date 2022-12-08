@@ -1,0 +1,133 @@
+// Vitest Snapshot v1
+
+exports[`Book > renders the initial state correctly 1`] = `
+<div>
+  <ul>
+    <div>
+      <article>
+        <span>
+          1
+        </span>
+        <h2>
+          How to eat
+        </h2>
+        <h5>
+          Hein Tay Zar
+        </h5>
+        <button
+          type="button"
+        >
+          Remove
+        </button>
+      </article>
+    </div>
+    <div>
+      <article>
+        <span>
+          2
+        </span>
+        <h2>
+          How to sleep
+        </h2>
+        <h5>
+          Hein Tay Zar2
+        </h5>
+        <button
+          type="button"
+        >
+          Remove
+        </button>
+      </article>
+    </div>
+  </ul>
+  <article
+    data-testid="form-container"
+  >
+    <h2>
+      Add New Book
+    </h2>
+    <form>
+      <input
+        data-testid="book-title-input"
+        placeholder="Book Title"
+        required=""
+        type="text"
+        value=""
+      />
+      <input
+        data-testid="author-title-input"
+        placeholder="Author"
+        required=""
+        type="text"
+        value=""
+      />
+    </form>
+  </article>
+</div>
+`;
+
+exports[`Books > renders the initial state correctly 1`] = `
+<div>
+  <ul>
+    <div>
+      <article>
+        <span>
+          1
+        </span>
+        <h2>
+          How to eat
+        </h2>
+        <h5>
+          Hein Tay Zar
+        </h5>
+        <button
+          type="button"
+        >
+          Remove
+        </button>
+      </article>
+    </div>
+    <div>
+      <article>
+        <span>
+          2
+        </span>
+        <h2>
+          How to sleep
+        </h2>
+        <h5>
+          Hein Tay Zar2
+        </h5>
+        <button
+          type="button"
+        >
+          Remove
+        </button>
+      </article>
+    </div>
+  </ul>
+  <article
+    data-testid="form-container"
+  >
+    <h2>
+      Add New Book
+    </h2>
+    <form>
+      <input
+        data-testid="book-title-input"
+        placeholder="Book Title"
+        required=""
+        type="text"
+        value=""
+      />
+      <input
+        data-testid="author-title-input"
+        placeholder="Author"
+        required=""
+        type="text"
+        value=""
+      />
+    </form>
+  </article>
+</div>
+`;

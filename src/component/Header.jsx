@@ -31,6 +31,7 @@ class Header extends React.Component {
                 {' '}
                 <NavLink
                   to={link.path}
+                  data-testid="link-item"
                 >
                   {link.text}
                 </NavLink>
