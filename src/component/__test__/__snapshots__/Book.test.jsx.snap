@@ -1,0 +1,18 @@
+// Vitest Snapshot v1
+
+exports[`Book > renders the initial state correctly 1`] = `
+<div>
+  <div>
+    <article>
+      <span />
+      <h2 />
+      <h5 />
+      <button
+        type="button"
+      >
+        Remove
+      </button>
+    </article>
+  </div>
+</div>
+`;

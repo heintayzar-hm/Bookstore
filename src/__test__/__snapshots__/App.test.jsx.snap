@@ -1,0 +1,101 @@
+// Vitest Snapshot v1
+
+exports[`App > renders the initial state correctly 1`] = `
+<div>
+  <nav>
+    <h1>
+      BookStore
+    </h1>
+    <div>
+      <ul>
+        <li>
+           
+          <a
+            class=""
+            data-testid="link-item"
+            href="#/books"
+          >
+            Books
+          </a>
+        </li>
+        <li>
+           
+          <a
+            class=""
+            data-testid="link-item"
+            href="#/categories"
+          >
+            Categories
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <ul>
+    <div>
+      <article>
+        <span>
+          1
+        </span>
+        <h2>
+          How to eat
+        </h2>
+        <h5>
+          Hein Tay Zar
+        </h5>
+        <button
+          type="button"
+        >
+          Remove
+        </button>
+      </article>
+    </div>
+    <div>
+      <article>
+        <span>
+          2
+        </span>
+        <h2>
+          How to sleep
+        </h2>
+        <h5>
+          Hein Tay Zar2
+        </h5>
+        <button
+          type="button"
+        >
+          Remove
+        </button>
+      </article>
+    </div>
+  </ul>
+  <article
+    data-testid="form-container"
+  >
+    <h2>
+      Add New Book
+    </h2>
+    <form>
+      <input
+        data-testid="book-title-input"
+        placeholder="Book Title"
+        required=""
+        type="text"
+        value=""
+      />
+      <input
+        data-testid="author-title-input"
+        placeholder="Author"
+        required=""
+        type="text"
+        value=""
+      />
+      <button
+        type="submit"
+      >
+        Add Book
+      </button>
+    </form>
+  </article>
+</div>
+`;
