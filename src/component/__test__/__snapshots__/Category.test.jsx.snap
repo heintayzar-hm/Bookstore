@@ -1,0 +1,14 @@
+// Vitest Snapshot v1
+
+exports[`Category > renders the initial state correctly 1`] = `
+<div>
+  <div>
+    <button
+      data-testid="check-status"
+      type="button"
+    >
+      Check Status
+    </button>
+  </div>
+</div>
+`;

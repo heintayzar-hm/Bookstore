@@ -1,8 +1,7 @@
 import React from 'react';
-import Category from '../component/Category';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class CategoriesPage extends React.Component {
+class Category extends React.Component {
   constructor(props) {
     super();
     this.props = props;
@@ -11,9 +10,11 @@ class CategoriesPage extends React.Component {
   render() {
     return (
       <>
-        <Category />
+        <div>
+          <button data-testid="check-status" type="button">Check Status</button>
+        </div>
       </>
     );
   }
 }
-export default CategoriesPage;
+export default Category;
