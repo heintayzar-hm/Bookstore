@@ -23,6 +23,11 @@ exports[`AddBook > renders the initial state correctly 1`] = `
         type="text"
         value=""
       />
+      <button
+        type="submit"
+      >
+        Add Book
+      </button>
     </form>
   </article>
 </div>

@@ -31,4 +31,10 @@ describe('AddBook', () => {
     expect(title.placeholder).toBe('Book Title');
     expect(author.placeholder).toBe('Author');
   });
+
+  test('AddBook has one submit button', () => {
+    const { getAllByText } = render(<AddBook />);
+    const button = getAllByText('Add Book');
+    expect(button).toHaveLength(1);
+  });
 });

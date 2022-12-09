@@ -18,6 +18,7 @@ class AddBook extends React.Component {
           <form>
             <input data-testid="book-title-input" type="text" placeholder="Book Title" value="" required />
             <input data-testid="author-title-input" type="text" placeholder="Author" value="" required />
+            <button type="submit">Add Book</button>
           </form>
         </article>
       </>
