@@ -8,8 +8,6 @@ class Books extends React.Component {
   constructor(props) {
     super();
     this.props = props;
-    this.addBook = this.addBook.bind(this);
-    this.removeBook = this.removeBook.bind(this);
   }
 
   render() {
