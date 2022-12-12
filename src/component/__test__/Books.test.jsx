@@ -1,6 +1,8 @@
 import { describe, expect, test } from 'vitest';
 import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import Books from '../Books';
+import store from '../../state/store';
 
 describe('Books', () => {
   test('renders the initial state correctly', () => {
@@ -8,7 +10,10 @@ describe('Books', () => {
 
     // Act
     const { container } = render(
-      <Books />,
+      <Provider store={store}>
+        <Books />
+      </Provider>
+      ,
     );
     // Assert
     expect(container).toMatchSnapshot();
@@ -19,7 +24,9 @@ describe('Books', () => {
 
     // Act
     const { getAllByText } = render(
-      <Books />,
+      <Provider store={store}>
+        <Books />
+      </Provider>,
     );
     // Assert
     expect(getAllByText('Add New Book').length).toBe(1);

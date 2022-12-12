@@ -9,7 +9,9 @@ class Book extends React.Component {
   }
 
   render() {
-    const { id, title, author } = this.props;
+    const {
+      id, title, author, removeBook,
+    } = this.props;
     return (
       <>
         <div>
@@ -17,7 +19,7 @@ class Book extends React.Component {
             <span>{id}</span>
             <h2>{title}</h2>
             <h5>{author}</h5>
-            <button type="button">Remove</button>
+            <button onClick={() => removeBook(id)} type="button">Remove</button>
           </article>
         </div>
       </>
@@ -26,8 +28,9 @@ class Book extends React.Component {
 }
 
 Book.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  removeBook: PropTypes.func.isRequired,
 };
 export default Book;

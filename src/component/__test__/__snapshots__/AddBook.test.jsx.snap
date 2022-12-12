@@ -11,6 +11,7 @@ exports[`AddBook > renders the initial state correctly 1`] = `
     <form>
       <input
         data-testid="book-title-input"
+        name="title"
         placeholder="Book Title"
         required=""
         type="text"
@@ -18,6 +19,7 @@ exports[`AddBook > renders the initial state correctly 1`] = `
       />
       <input
         data-testid="author-title-input"
+        name="author"
         placeholder="Author"
         required=""
         type="text"

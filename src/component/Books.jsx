@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addBookAction, removeBookAction } from '../state/actions/booksActions';
 import AddBook from './AddBook';
 import Book from './Book';
 
@@ -7,34 +10,53 @@ class Books extends React.Component {
   constructor(props) {
     super();
     this.props = props;
-    this.state = {
-      books: [
-        {
-          id: '1',
-          author: 'Hein Tay Zar',
-          title: 'How to eat',
-        },
-        {
-          id: '2',
-          author: 'Hein Tay Zar2',
-          title: 'How to sleep',
-        },
-      ],
-    };
+    this.addBook = this.addBook.bind(this);
+    this.removeBook = this.removeBook.bind(this);
+  }
+
+  addBook(title, author) {
+    const { dispatch } = this.props;
+    dispatch(addBookAction({ title, author }));
+  }
+
+  removeBook(id) {
+    const { dispatch } = this.props;
+    dispatch(removeBookAction(id));
   }
 
   render() {
-    const { books } = this.state;
+    const { books } = this.props;
     return (
       <>
         <ul>
           {books.map((book) => (
-            <Book key={book.id} id={book.id} title={book.title} author={book.author} />
+            <Book
+              key={book.id}
+              id={book.id}
+              title={book.title}
+              author={book.author}
+              removeBook={this.removeBook}
+            />
           ))}
         </ul>
-        <AddBook />
+        <AddBook addBook={this.addBook} />
       </>
     );
   }
 }
-export default Books;
+
+const mapStateToProps = (state) => ({
+  // specify which state data to provide to the component
+  books: state.books,
+});
+Books.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  books: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      author: PropTypes.string,
+    }),
+  ).isRequired,
+};
+export default connect(mapStateToProps)(Books);

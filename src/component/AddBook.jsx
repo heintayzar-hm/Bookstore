@@ -6,18 +6,43 @@ class AddBook extends React.Component {
   constructor(props) {
     super();
     this.props = props;
+    this.state = {
+      author: '',
+      title: '',
+    };
+  }
+
+  changeHandler = (e) => {
+    e.preventDefault();
+    this.setState((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  }
+
+  submitHandler = (e) => {
+    e.preventDefault();
+    const { addBook } = this.props;
+    const { title, author } = this.state;
+    if (title.trim() && author.trim()) {
+      addBook(title, author);
+      this.setState({
+        author: '',
+        title: '',
+      });
+    }
   }
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const { addBook } = this.props;
+    const { author, title } = this.state;
     return (
       <>
         <article data-testid="form-container">
           <h2>Add New Book</h2>
-          <form>
-            <input data-testid="book-title-input" type="text" placeholder="Book Title" value="" required />
-            <input data-testid="author-title-input" type="text" placeholder="Author" value="" required />
+          <form onSubmit={this.submitHandler}>
+            <input name="title" onChange={this.changeHandler} data-testid="book-title-input" type="text" placeholder="Book Title" value={title} required />
+            <input name="author" onChange={this.changeHandler} data-testid="author-title-input" type="text" placeholder="Author" value={author} required />
             <button type="submit">Add Book</button>
           </form>
         </article>
