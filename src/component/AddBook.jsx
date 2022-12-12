@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class AddBook extends React.Component {
@@ -9,15 +8,13 @@ class AddBook extends React.Component {
   }
 
   render() {
-    // eslint-disable-next-line no-unused-vars
-    const { addBook } = this.props;
     return (
       <>
         <article data-testid="form-container">
           <h2>Add New Book</h2>
           <form>
-            <input data-testid="book-title-input" type="text" placeholder="Book Title" value="" required />
-            <input data-testid="author-title-input" type="text" placeholder="Author" value="" required />
+            <input name="title" data-testid="book-title-input" type="text" placeholder="Book Title" required />
+            <input name="author" data-testid="author-title-input" type="text" placeholder="Author" required />
             <button type="submit">Add Book</button>
           </form>
         </article>
@@ -26,7 +23,4 @@ class AddBook extends React.Component {
   }
 }
 
-AddBook.propTypes = {
-  addBook: PropTypes.func.isRequired,
-};
 export default AddBook;

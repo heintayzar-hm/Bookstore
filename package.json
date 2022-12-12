@@ -12,10 +12,13 @@
     "test": "vitest --watch"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.5"
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.4.5",
+    "redux": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
