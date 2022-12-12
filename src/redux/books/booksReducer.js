@@ -1,6 +1,9 @@
+// Actions
 import { ADD_BOOK, REMOVE_BOOK } from '../constant';
-
-const books = (state = [], action) => {
+import { addBookAction, removeBookAction } from '../actions/booksActions';
+//
+const initialState = [];
+const books = (state = initialState, action) => {
   const { id, author, title } = action;
   switch (action.type) {
     case ADD_BOOK:
@@ -18,3 +21,9 @@ const books = (state = [], action) => {
 };
 
 export default books;
+
+// Creators
+export {
+  addBookAction,
+  removeBookAction,
+};

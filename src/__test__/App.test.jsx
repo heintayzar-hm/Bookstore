@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 import { HashRouter } from 'react-router-dom';
 import App from '../App';
-import store from '../state/store';
+import store from '../redux/configureStore';
 
 describe('App', () => {
   test('renders the initial state correctly', () => {
