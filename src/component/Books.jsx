@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addBookAction, removeBookAction } from '../redux/books/booksReducer';
+import { addBookAction, removeBookAction, showBookAction } from '../redux/books/booksReducer';
 import AddBook from './AddBook';
 import Book from './Book';
-import { showBookAction } from '../redux/books/booksReducer';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Books extends React.Component {

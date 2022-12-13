@@ -114,6 +114,15 @@ To run the project, execute the following command:
   npm run dev
 ```
 
+### Env Files
+You can make the `.env` file in the root folder and add the following data:
+For the VITE_API_SECRET you can try to create one at [BookStore API](https://www.notion.so/Bookstore-API-51ea269061f849118c65c0a53e88a739)
+
+```sh
+  VITE_APP_TITLE = BookStore
+  VITE_API_SECRET = 
+  VITE_API_URL = https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi
+```
 
 ### Run tests
 
