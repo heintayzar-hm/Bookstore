@@ -2,7 +2,7 @@
 import {
   ADD_BOOK, apiState, REMOVE_BOOK, SHOW_BOOK,
 } from '../constant';
-import { addBookAction, removeBookAction } from '../actions/booksActions';
+import { addBookAction, removeBookAction, showBookAction } from '../actions/booksActions';
 //
 const [success, waiting, fail] = apiState;
 const initialState = [];
@@ -36,4 +36,5 @@ export default books;
 export {
   addBookAction,
   removeBookAction,
+  showBookAction,
 };
