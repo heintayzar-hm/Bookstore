@@ -4,14 +4,26 @@ import PropTypes from 'prop-types';
 import { addBookAction, removeBookAction } from '../redux/books/booksReducer';
 import AddBook from './AddBook';
 import Book from './Book';
+import { showBookAction } from '../redux/actions/booksActions';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Books extends React.Component {
   constructor(props) {
     super();
     this.props = props;
+    this.state = {
+    };
     this.addBook = this.addBook.bind(this);
     this.removeBook = this.removeBook.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchBooks();
+  }
+
+  fetchBooks() {
+    const { dispatch } = this.props;
+    dispatch(showBookAction());
   }
 
   addBook(title, author) {
@@ -53,7 +65,7 @@ Books.propTypes = {
   dispatch: PropTypes.func.isRequired,
   books: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       title: PropTypes.string,
       author: PropTypes.string,
     }),

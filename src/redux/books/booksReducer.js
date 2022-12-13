@@ -1,20 +1,30 @@
 // Actions
-import { ADD_BOOK, REMOVE_BOOK } from '../constant';
+import {
+  ADD_BOOK, apiState, REMOVE_BOOK, SHOW_BOOK,
+} from '../constant';
 import { addBookAction, removeBookAction } from '../actions/booksActions';
 //
+const [success, waiting, fail] = apiState;
 const initialState = [];
 const books = (state = initialState, action) => {
-  const { id, author, title } = action;
+  let book = {};
   switch (action.type) {
-    case ADD_BOOK:
+    case ADD_BOOK + success:
+      book = { ...action.meta.arg, ...action.payload };
       return [
         ...state,
         {
-          id, author, title,
+          ...book,
         },
       ];
-    case REMOVE_BOOK:
-      return state.filter((book) => book.id !== id);
+    case SHOW_BOOK + success:
+      return action.payload;
+    case SHOW_BOOK + waiting:
+      return state;
+    case SHOW_BOOK + fail:
+      return state;
+    case REMOVE_BOOK + success:
+      return state.filter((book) => book.id !== action.meta.arg);
     default:
       return state;
   }
