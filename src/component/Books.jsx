@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addBookAction, removeBookAction, showBookAction } from '../redux/books/booksReducer';
-import AddBook from './AddBook';
-import Book from './Book';
+import AddBook from './AddBook/AddBook';
+import Book from './Book/Book';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Books extends React.Component {
@@ -39,13 +39,14 @@ class Books extends React.Component {
     const { books } = this.props;
     return (
       <>
-        <ul>
+        <ul className="grid grid-cols-1 gap-10 border-b-2 border-solid pb-10 mb-10 border-[#e8e8e8]">
           {books.map((book) => (
             <Book
               key={book.id}
               id={book.id}
               title={book.title}
               author={book.author}
+              category="Adventure"
               removeBook={this.removeBook}
             />
           ))}
