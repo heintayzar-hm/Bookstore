@@ -10,9 +10,9 @@ class BooksPage extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="p-[4%]">
         <Books />
-      </>
+      </div>
     );
   }
 }

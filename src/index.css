@@ -1,3 +1,52 @@
-* {
-  font-family: 'Courier New', Courier, monospace;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  margin: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 60px 0 rgb(0 0 0 / 5%);
+  background-color: #fafafa;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-moz-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-ms-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-moz-scrollbar-thumb {
+  background-color: #0290ff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0290ff;
+  border-radius: 10px;
+}
+
+::-ms-scrollbar-thumb {
+  background-color: #0290ff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: black;
+}
+
+::-moz-scrollbar-thumb:hover {
+  background-color: black;
+}
+
+::-ms-scrollbar-thumb:hover {
+  background-color: black;
 }

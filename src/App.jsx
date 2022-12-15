@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Header from './component/Header';
+import Layout from './component/layout/Layout';
 import BooksPage from './pages/BookPage';
 import CategoriesPage from './pages/CategoriesPage';
 
@@ -14,12 +14,13 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Header />
-        <Routes>
-          <Route path="/books" element={<BooksPage />} />
-          <Route path="/categories" element={<CategoriesPage />} />
-          <Route path="/*" element={<BooksPage />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/books" element={<BooksPage />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/*" element={<BooksPage />} />
+          </Routes>
+        </Layout>
       </>
     );
   }
