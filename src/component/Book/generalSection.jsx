@@ -10,7 +10,7 @@ class GeneralSection extends React.Component {
 
   render() {
     const {
-      id, title, author, removeBook, category,
+      id, title, author, removeBook, category, updateHandler,
     } = this.props;
     return (
       <>
@@ -24,7 +24,7 @@ class GeneralSection extends React.Component {
             <div className="w-[0.125em] h-5 bg-[#e8e8e8] mr-4 ml-4" />
             <button onClick={() => removeBook(id)} type="button">Remove</button>
             <div className="w-[0.125em] h-5 bg-[#e8e8e8] mr-4 ml-4" />
-            <button type="button">Edit</button>
+            <button type="button" onClick={() => updateHandler(id)}>Edit</button>
           </div>
         </div>
 
@@ -37,7 +37,8 @@ GeneralSection.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  category: PropTypes.arrayOf(PropTypes.string).isRequired,
   removeBook: PropTypes.func.isRequired,
+  updateHandler: PropTypes.func.isRequired,
 };
 export default GeneralSection;

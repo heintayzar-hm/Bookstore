@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { addBookAction, removeBookAction, showBookAction } from '../redux/books/booksReducer';
 import AddBook from './AddBook/AddBook';
 import Book from './Book/Book';
+import { editBookAction } from '../redux/actions/booksActions';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Books extends React.Component {
@@ -11,13 +12,31 @@ class Books extends React.Component {
     super();
     this.props = props;
     this.state = {
+      updateStateID: -1,
     };
     this.addBook = this.addBook.bind(this);
     this.removeBook = this.removeBook.bind(this);
+    this.editBook = this.editBook.bind(this);
+    this.updateHandler = this.updateHandler.bind(this);
   }
 
   componentDidMount() {
     this.fetchBooks();
+  }
+
+  componentDidUpdate() {
+    const { updateStateID } = this.state;
+    if (updateStateID !== -1) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }
+
+  updateHandler = (id) => {
+    this.setState(() => ({
+      updateStateID: id,
+    }));
   }
 
   fetchBooks() {
@@ -25,9 +44,9 @@ class Books extends React.Component {
     dispatch(showBookAction());
   }
 
-  addBook(title, author) {
+  addBook(title, author, category) {
     const { dispatch } = this.props;
-    dispatch(addBookAction({ title, author }));
+    dispatch(addBookAction({ title, author, category }));
   }
 
   removeBook(id) {
@@ -35,8 +54,18 @@ class Books extends React.Component {
     dispatch(removeBookAction(id));
   }
 
+  editBook({
+    id, title, author, category, currentChapter, totalChapter,
+  }) {
+    const { dispatch } = this.props;
+    dispatch(editBookAction({
+      id, title, author, category, currentChapter, totalChapter,
+    }));
+  }
+
   render() {
     const { books } = this.props;
+    const { updateStateID } = this.state;
     return (
       <>
         <ul className="grid grid-cols-1 gap-10 border-b-2 border-solid pb-10 mb-10 border-[#e8e8e8]">
@@ -46,8 +75,13 @@ class Books extends React.Component {
               id={book.id}
               title={book.title}
               author={book.author}
-              category="Adventure"
+              category={book.category}
+              totalChapter={(book.totalChapter) ? +(book.totalChapter) : 0}
+              currentChapter={(book.currentChapter) ? +(book.currentChapter) : 0}
               removeBook={this.removeBook}
+              updateStateProps={book.id === updateStateID}
+              updateHandler={this.updateHandler}
+              editBook={this.editBook}
             />
           ))}
         </ul>
@@ -68,6 +102,7 @@ Books.propTypes = {
       id: PropTypes.string,
       title: PropTypes.string,
       author: PropTypes.string,
+      category: PropTypes.arrayOf(PropTypes.string),
     }),
   ).isRequired,
 };

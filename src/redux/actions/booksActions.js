@@ -1,45 +1,83 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  collection, addDoc, getDocs, serverTimestamp, doc, getDoc, setDoc, deleteDoc,
+} from 'firebase/firestore';
+
 import axios from 'axios';
 import {
-  ADD_BOOK, REMOVE_BOOK, apiUrl, apiSecret, SHOW_BOOK,
+  ADD_BOOK, REMOVE_BOOK, apiUrl, apiSecret, SHOW_BOOK, UPDATE_BOOK,
 } from '../constant';
+import db from '../../firebase/firebase';
 
-const addBookAction = createAsyncThunk(ADD_BOOK, async ({ title, author }) => {
-  const url = `${apiUrl}/apps/${apiSecret}/books`;
+const handleData = (books) => {
+  const returnArray = [];
+  books.forEach((book) => {
+    const bookObj = { ...book.data() };
+    const { timestamp } = bookObj;
+    returnArray.push({ ...bookObj, timestamp: `${timestamp.toDate()}`, id: book.id });
+  });
+  return returnArray;
+};
+
+const docChecker = async (doc) => {
+  const docSnapshot = await getDoc(doc);
+  if (!docSnapshot.exists()) {
+    throw new Error('Document does not exist');
+  }
+};
+
+const addBookAction = createAsyncThunk(ADD_BOOK, async ({ title, author, category }) => {
   const id = `${Date.now()}`;
   const config = {
     title,
     author,
-    category: 'Fiction',
-    item_id: id,
+    category: [category],
+    chapter: '',
+    totalChapter: '',
+    timestamp: serverTimestamp(),
   };
-  const response = await axios.post(url, config);
-  return {
-    data: response.data, id,
+  const docRef = doc(db, 'books', id);
+  await setDoc(docRef, config);
+  return (docRef.id) ? {
+    msg: 'success', id,
+  } : {
+    msg: 'fail', id,
   };
 });
 
 const removeBookAction = createAsyncThunk(REMOVE_BOOK, async (id) => {
-  const url = `${apiUrl}/apps/${apiSecret}/books/${id}`;
-  const response = await axios.delete(url);
-  return (response.data);
+  const docRef = doc(db, 'books', id);
+  await docChecker(docRef);
+  await deleteDoc(docRef);
+  return 'success';
 });
-const handleData = (data) => {
-  const keys = Object.keys(data).sort();
-  const returnArray = [];
-  keys.forEach((key) => {
-    returnArray.push({ ...data[key][0], id: key });
-  });
-  return returnArray;
-};
+
 const showBookAction = createAsyncThunk(SHOW_BOOK, async () => {
-  const url = `${apiUrl}/apps/${apiSecret}/books`;
-  const response = await axios.get(url);
-  return handleData(response.data);
+  const books = await getDocs(collection(db, 'books'));
+  return (handleData(books));
+});
+
+const editBookAction = createAsyncThunk(UPDATE_BOOK, async ({
+  id, title, author, category, currentChapter, totalChapter,
+}) => {
+  const config = {
+    id,
+    title,
+    author,
+    category,
+    currentChapter,
+    totalChapter,
+    timestamp: serverTimestamp(),
+  };
+  const docRef = doc(db, 'books', id);
+  await docChecker(docRef);
+  await setDoc(docRef, config);
+   return 'success';
 });
 
 export {
   addBookAction,
   removeBookAction,
   showBookAction,
+  editBookAction,
 };

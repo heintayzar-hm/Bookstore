@@ -10,6 +10,7 @@ class AddBook extends React.Component {
     this.state = {
       author: '',
       title: '',
+      category: { id: 1, name: 'Action' },
     };
   }
 
@@ -21,15 +22,23 @@ class AddBook extends React.Component {
     }));
   }
 
+  dropdownChangeHandler = (value) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      category: value,
+    }));
+  }
+
   submitHandler = (e) => {
     e.preventDefault();
     const { addBook } = this.props;
-    const { title, author } = this.state;
+    const { title, author, category } = this.state;
     if (title.trim() && author.trim()) {
-      addBook(title, author);
+      addBook(title, author, category.name);
       this.setState({
         author: '',
         title: '',
+        category: '',
       });
     }
   }
@@ -44,8 +53,8 @@ class AddBook extends React.Component {
           <form onSubmit={this.submitHandler} className=" gap-4 grid grid-cols-1 sm:grid-cols-12">
             <input className="dark:bg-black dark:text-white sm:col-span-3 p-2 px-3 border focus:outline-none rounded focus:border-blue border-solid tracking-widest text-brown" name="title" onChange={this.changeHandler} data-testid="book-title-input" type="text" placeholder="Book Title" value={title} required />
             <input className=" dark:bg-black dark:text-white sm:col-span-3 p-2 px-3 border focus:outline-none rounded focus:border-blue border-solid tracking-widest text-brown" name="author" onChange={this.changeHandler} data-testid="author-title-input" type="text" placeholder="Author" value={author} required />
-            <div className="sm:col-span-4"><DropDown /></div>
-            <button className="sm:col-span-2 p-3 bg-blue text-white rounded" type="submit">Add Book</button>
+            <div className="sm:col-span-4"><DropDown changeHandler={this.dropdownChangeHandler} currentSelectName="Action" /></div>
+            <button className="sm:col-span-2 p-3 bg-blue text-white rounded hover:bg-white hover:text-blue" type="submit">Add Book</button>
           </form>
         </article>
       </>

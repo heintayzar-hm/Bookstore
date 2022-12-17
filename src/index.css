@@ -9,6 +9,10 @@
   background-color: #fafafa;
 }
 
+.transparent-bg {
+  background-color: rgba(38, 55, 188, 0.6);
+}
+
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
