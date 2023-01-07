@@ -11,6 +11,17 @@ class Book extends React.Component {
     this.props = props;
     this.state = {
     };
+    this.updateProgress = this.updateProgress.bind(this);
+  }
+
+  updateProgress({ currentChapter, totalChapter }) {
+    const {
+      editBook, id, title, author, category,
+    } = this.props;
+    const updateData = {
+      id, title, author, category, currentChapter, totalChapter,
+    };
+    editBook(updateData);
   }
 
   render() {
@@ -31,8 +42,9 @@ class Book extends React.Component {
               category={category}
             />
             <ProgressSection
-              chapter={currentChapter}
+              currentChapter={currentChapter}
               totalChapter={totalChapter}
+              updateProgress={this.updateProgress}
             />
             {(updateStateProps)
               ? (

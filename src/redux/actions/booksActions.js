@@ -1,11 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  collection, addDoc, getDocs, serverTimestamp, doc, getDoc, setDoc, deleteDoc,
+  collection, getDocs, serverTimestamp, doc, getDoc, setDoc, deleteDoc,
 } from 'firebase/firestore';
-
-import axios from 'axios';
 import {
-  ADD_BOOK, REMOVE_BOOK, apiUrl, apiSecret, SHOW_BOOK, UPDATE_BOOK,
+  ADD_BOOK, REMOVE_BOOK, SHOW_BOOK, UPDATE_BOOK,
 } from '../constant';
 import db from '../../firebase/firebase';
 
@@ -72,7 +70,7 @@ const editBookAction = createAsyncThunk(UPDATE_BOOK, async ({
   const docRef = doc(db, 'books', id);
   await docChecker(docRef);
   await setDoc(docRef, config);
-   return 'success';
+  return 'success';
 });
 
 export {

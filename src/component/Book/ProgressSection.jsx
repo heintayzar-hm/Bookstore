@@ -8,6 +8,7 @@ class ProgressSection extends React.Component {
     super();
     this.props = props;
     this.state = {
+      ...props,
       boxOpen: false,
     };
   }
@@ -20,10 +21,20 @@ class ProgressSection extends React.Component {
     }));
   }
 
+  updateBox = () => {
+    this.setState((prevState) => ({ ...prevState, boxOpen: !prevState.boxOpen }));
+  }
+
+  submitBox = () => {
+    const { updateProgress } = this.props;
+    updateProgress(this.state);
+    this.setState((prevState) => ({ ...prevState, boxOpen: !prevState.boxOpen }));
+  }
+
   render() {
     const {
-      chapter, totalChapter,
-    } = this.props;
+      currentChapter, totalChapter,
+    } = this.state;
     const { boxOpen } = this.state;
     return (
       <>
@@ -32,7 +43,7 @@ class ProgressSection extends React.Component {
           <div className=" w-[5.625rem] h-[5.625rem] p-[0.63em]"><div className="absolute rounded-[50%] w-[4.25em] h-[4.25em] border-[5px] border-solid border-blue rotate-45 border-l-[#e8e8e8]" /></div>
           <div className="flex flex-col">
             <div className="text-3xl font-important text-brown dark:text-white">
-              {(chapter / totalChapter) ? `${Math.floor((chapter / totalChapter) * 100)}%`
+              {(currentChapter / totalChapter) ? `${Math.floor((currentChapter / totalChapter) * 100)}%`
                 : (
                   <>
                     <div className="text-lg">Not Started</div>
@@ -40,7 +51,7 @@ class ProgressSection extends React.Component {
                 )}
             </div>
             {
-              (chapter !== 0)
+              (currentChapter !== 0)
                 ? (
                   <>
                     <div className="text-sm opacity-50 font-important text-brown dark:text-white">Completed</div>
@@ -55,27 +66,36 @@ class ProgressSection extends React.Component {
           <span className="tracking-tight font-normal">
             Chapter
             {' '}
-            {chapter}
+            {currentChapter}
           </span>
           {(boxOpen) ? (
             <>
               <AddProgress
-                currentChapter={chapter}
+                currentChapter={currentChapter}
                 totalChapter={totalChapter}
                 changeHandler={this.changeHandler}
                 fromUpdateSection
               />
             </>
           ) : null}
-          <button onClick={() => this.setState((prevState) => ({ ...prevState, boxOpen: !prevState.boxOpen }))} className="tracking-wider hover:bg-white hover:text-blue text-white font-normal bg-blue rounded" type="button">UPDATE PROGRESS</button>
+          {!boxOpen ? (
+            <>
+              <button onClick={this.updateBox} className="tracking-wider hover:bg-white hover:text-blue text-white font-normal bg-blue rounded" type="button">UPDATE PROGRESS</button>
+            </>
+          )
+            : (
+              <>
+                <button onClick={this.submitBox} className="tracking-wider hover:bg-white hover:text-blue text-white font-normal bg-blue rounded" type="button">SUBMIT</button>
+
+              </>
+            )}
+
         </div>
       </>
     );
   }
 }
-
 ProgressSection.propTypes = {
-  chapter: PropTypes.number.isRequired,
-  totalChapter: PropTypes.number.isRequired,
+  updateProgress: PropTypes.func.isRequired,
 };
 export default ProgressSection;
