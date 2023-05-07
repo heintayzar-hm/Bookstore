@@ -1,5 +1,5 @@
 import React from 'react';
-import Category from '../component/Category';
+import Categories from '../component/Categories';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class CategoriesPage extends React.Component {
@@ -11,7 +11,7 @@ class CategoriesPage extends React.Component {
   render() {
     return (
       <>
-        <Category />
+        <Categories />
       </>
     );
   }
