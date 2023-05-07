@@ -31,8 +31,9 @@ class Book extends React.Component {
               category={category}
             />
             <ProgressSection
-              chapter={currentChapter}
+              currentChapter={currentChapter}
               totalChapter={totalChapter}
+              id={id}
             />
             {(updateStateProps)
               ? (

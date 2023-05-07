@@ -1,13 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  collection, addDoc, getDocs, serverTimestamp, doc, getDoc, setDoc, deleteDoc,
+  collection, getDocs, serverTimestamp, doc, getDoc, setDoc, deleteDoc,
 } from 'firebase/firestore';
 
-import axios from 'axios';
 import {
-  ADD_BOOK, REMOVE_BOOK, apiUrl, apiSecret, SHOW_BOOK, UPDATE_BOOK,
+  ADD_BOOK, REMOVE_BOOK, SHOW_BOOK, UPDATE_BOOK, UPDATE_PROGRESS,
 } from '../constant';
 import db from '../../firebase/firebase';
+
+const docName = 'books';
 
 const handleData = (books) => {
   const returnArray = [];
@@ -36,7 +37,7 @@ const addBookAction = createAsyncThunk(ADD_BOOK, async ({ title, author, categor
     totalChapter: '',
     timestamp: serverTimestamp(),
   };
-  const docRef = doc(db, 'books', id);
+  const docRef = doc(db, docName, id);
   await setDoc(docRef, config);
   return (docRef.id) ? {
     msg: 'success', id,
@@ -46,14 +47,14 @@ const addBookAction = createAsyncThunk(ADD_BOOK, async ({ title, author, categor
 });
 
 const removeBookAction = createAsyncThunk(REMOVE_BOOK, async (id) => {
-  const docRef = doc(db, 'books', id);
+  const docRef = doc(db, docName, id);
   await docChecker(docRef);
   await deleteDoc(docRef);
   return 'success';
 });
 
 const showBookAction = createAsyncThunk(SHOW_BOOK, async () => {
-  const books = await getDocs(collection(db, 'books'));
+  const books = await getDocs(collection(db, docName));
   return (handleData(books));
 });
 
@@ -69,10 +70,25 @@ const editBookAction = createAsyncThunk(UPDATE_BOOK, async ({
     totalChapter,
     timestamp: serverTimestamp(),
   };
-  const docRef = doc(db, 'books', id);
+  const docRef = doc(db, docName, id);
   await docChecker(docRef);
   await setDoc(docRef, config);
-   return 'success';
+  return 'success';
+});
+
+const editProgressAction = createAsyncThunk(UPDATE_PROGRESS, async ({
+  id, currentChapter, totalChapter,
+}) => {
+  const config = {
+    id,
+    currentChapter,
+    totalChapter,
+    timestamp: serverTimestamp(),
+  };
+  const docRef = doc(db, docName, id);
+  await docChecker(docRef);
+  await setDoc(docRef, config, { merge: true });
+  return 'success';
 });
 
 export {
@@ -80,4 +96,5 @@ export {
   removeBookAction,
   showBookAction,
   editBookAction,
+  editProgressAction,
 };

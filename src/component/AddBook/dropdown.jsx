@@ -2,15 +2,13 @@ import { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
-import categories from './categories';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const DropDown = ({ changeHandler, currentSelectName = 'Adventure' }) => {
-  const data = categories.filter((category) => category.name === currentSelectName);
-  const [selected, setSelected] = useState(categories[(data[0].id) - 1]);
+const DropDown = ({ changeHandler, currentSelectName, categories }) => {
+  const [selected, setSelected] = useState(currentSelectName);
 
   const selectHandler = (currentSelected) => {
     setSelected(currentSelected);
@@ -83,6 +81,13 @@ const DropDown = ({ changeHandler, currentSelectName = 'Adventure' }) => {
 
 DropDown.propTypes = {
   changeHandler: PropTypes.func.isRequired,
-  currentSelectName: PropTypes.string.isRequired,
+  currentSelectName: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  categories: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.any),
+    PropTypes.string,
+  ]).isRequired,
 };
 export default DropDown;

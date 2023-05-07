@@ -16,7 +16,7 @@ class GeneralSection extends React.Component {
       <>
 
         <div className="grid grid-cols-1">
-          <span className="tracking-wide font-important font-bold opacity-50 text-sm text-brown">{category}</span>
+          <span className="tracking-wide font-important font-bold opacity-50 text-sm text-brown">{category[0]}</span>
           <h2 className="font-normal tracking-tight font-extrabold text-2xl">{title}</h2>
           <h5 className="text-lightblue text-sm font-normal tracking-wide">{author}</h5>
           <div className=" text-lightblue text-sm font-normal tracking-wide mt-5 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">

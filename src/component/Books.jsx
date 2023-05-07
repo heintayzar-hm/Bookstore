@@ -50,6 +50,10 @@ class Books extends React.Component {
   }
 
   removeBook(id) {
+    // eslint-disable-next-line no-alert, no-restricted-globals
+    if (!confirm('Do you really want to remove the book?')) {
+      return;
+    }
     const { dispatch } = this.props;
     dispatch(removeBookAction(id));
   }

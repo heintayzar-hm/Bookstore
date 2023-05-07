@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import DropDown from './dropdown';
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -46,6 +47,10 @@ class AddBook extends React.Component {
   render() {
     // eslint-disable-next-line no-unused-vars
     const { author, title } = this.state;
+    const { categories } = this.props;
+    if (categories.length === 0) {
+      return <></>;
+    }
     return (
       <>
         <article data-testid="form-container">
@@ -53,7 +58,7 @@ class AddBook extends React.Component {
           <form onSubmit={this.submitHandler} className=" gap-4 grid grid-cols-1 sm:grid-cols-12">
             <input className="dark:bg-black dark:text-white sm:col-span-3 p-2 px-3 border focus:outline-none rounded focus:border-blue border-solid tracking-widest text-brown" name="title" onChange={this.changeHandler} data-testid="book-title-input" type="text" placeholder="Book Title" value={title} required />
             <input className=" dark:bg-black dark:text-white sm:col-span-3 p-2 px-3 border focus:outline-none rounded focus:border-blue border-solid tracking-widest text-brown" name="author" onChange={this.changeHandler} data-testid="author-title-input" type="text" placeholder="Author" value={author} required />
-            <div className="sm:col-span-4"><DropDown changeHandler={this.dropdownChangeHandler} currentSelectName="Action" /></div>
+            <div className="sm:col-span-4"><DropDown changeHandler={this.dropdownChangeHandler} currentSelectName={categories[0]} categories={categories} /></div>
             <button className="sm:col-span-2 p-3 bg-blue text-white rounded hover:bg-white hover:text-blue" type="submit">Add Book</button>
           </form>
         </article>
@@ -62,7 +67,16 @@ class AddBook extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  // specify which state data to provide to the component
+  categories: state.categories,
+});
+
 AddBook.propTypes = {
   addBook: PropTypes.func.isRequired,
+  categories: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.any),
+    PropTypes.string,
+  ]).isRequired,
 };
-export default AddBook;
+export default connect(mapStateToProps)(AddBook);

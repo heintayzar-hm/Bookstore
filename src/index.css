@@ -54,3 +54,7 @@
 ::-ms-scrollbar-thumb:hover {
   background-color: black;
 }
+
+body {
+  min-height: 100vh;
+}

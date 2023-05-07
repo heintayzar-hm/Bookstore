@@ -24,7 +24,7 @@ class Layout extends React.Component {
     const { children } = this.props;
     const { bool } = this.state;
     return (
-      <div className={`${(bool) ? 'dark bg-gray-500' : 'white bg-[#f5f6fa]'} p-[4%]`}>
+      <div className={`${(bool) ? 'dark bg-gray-500 min-h-screen' : 'white bg-[#f5f6fa]'} p-[4%] min-h-screen`}>
         <div className="bg-white dark:bg-black dark:text-white">
           <Header />
           {children}

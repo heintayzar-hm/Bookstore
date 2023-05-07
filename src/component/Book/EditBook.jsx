@@ -1,6 +1,8 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AiFillCloseCircle } from 'react-icons/ai';
+import { connect } from 'react-redux';
 import DropDown from '../AddBook/dropdown';
 import AddProgress from './AddProgress';
 // eslint-disable-next-line react/prefer-stateless-function
@@ -15,6 +17,10 @@ class EditBook extends React.Component {
     e.preventDefault();
     const { editHandler, updateHandler } = this.props;
     const { title, author } = this.state;
+    // eslint-disable-next-line no-restricted-globals
+    if (!confirm('Do you really want to update the book?')) {
+      return;
+    }
     if (title.trim() && author.trim()) {
       editHandler(this.state);
       updateHandler(-1);
@@ -55,7 +61,7 @@ class EditBook extends React.Component {
     const {
       id, title, author, category, currentChapter, totalChapter,
     } = this.state;
-    const { removeBook, updateHandler } = this.props;
+    const { removeBook, updateHandler, categories } = this.props;
     return (
       <>
         <div className="fixed z-50 inset-0 transparent-bg overflow-scroll">
@@ -85,7 +91,8 @@ class EditBook extends React.Component {
                   <div className="col-span-9">
                     <DropDown
                       changeHandler={this.dropdownChangeHandler}
-                      currentSelectName={category[0]}
+                      currentSelectName={categories.find((cat) => cat.name === category[0])}
+                      categories={categories}
                     />
                   </div>
                   <button type="button" className="col-span-1" onClick={this.addHandler}>ADD</button>
@@ -111,10 +118,17 @@ class EditBook extends React.Component {
     );
   }
 }
-
+const mapStateToProps = (state) => ({
+  // specify which state data to provide to the component
+  categories: state.categories,
+});
 EditBook.propTypes = {
   removeBook: PropTypes.func.isRequired,
   editHandler: PropTypes.func.isRequired,
   updateHandler: PropTypes.func.isRequired,
+  categories: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.any),
+    PropTypes.string,
+  ]).isRequired,
 };
-export default EditBook;
+export default connect(mapStateToProps)(EditBook);
