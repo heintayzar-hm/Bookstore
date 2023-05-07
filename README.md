@@ -36,7 +36,8 @@
 <!-- PROJECT DESCRIPTION -->
 
 # 📖 [Bookstore] <a name="about-project"></a>
-> The react Project for Book CMS
+> BookStore-CMS is a React and Firebase-powered web application designed for book enthusiasts who want to manage their book collection and categories with ease. The app allows users to perform basic CRUD (Create, Read, Update, Delete) operations on books, enabling them to add, edit, and remove books from their collection. Additionally, users can create new categories for their books, providing a convenient way to organize their collection. With a user-friendly interface and robust functionality, BookStore-CMS is the ultimate solution for anyone who wants to keep track of their books in a seamless and efficient manner.
+
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -53,7 +54,8 @@
 
 ### Key Features <a name="key-features"></a>
 
-
+- All users can freely see other people books and their categories and make crud operations
+- All users can make new categories
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -61,7 +63,8 @@
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
-[Live Version](https://heintayzar-hm.github.io/Bookstore/)
+![](./cms.png)
+[Live Version](https://bookstore-cms.vercel.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -76,6 +79,7 @@ To get a local copy up and running, follow these steps.
 In order to run this project you need:
 
 - Basic Knowledge of HTML, CSS, & JavaScript.
+- Basice Knowledge of Tailwindcss
 - Basic knowledge of ES6 syntax.
 - Basic knowledge of Git, GitHub &Gitflow.
 - Basic knowledge of Linters.
@@ -96,7 +100,7 @@ Clone this repository to your desired folder:
 
 ### Install
 
-Install this project with:
+Install this project with:(legnacy might require)
 
 
 
@@ -114,16 +118,6 @@ To run the project, execute the following command:
   npm run dev
 ```
 
-### Env Files
-You can make the `.env` file in the root folder and add the following data:
-For the VITE_API_SECRET you can try to create one at [BookStore API](https://www.notion.so/Bookstore-API-51ea269061f849118c65c0a53e88a739)
-
-```sh
-  VITE_APP_TITLE = BookStore
-  VITE_API_SECRET = 
-  VITE_API_URL = https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi
-```
-
 ### Run tests
 
 To run tests, run the following command:
@@ -135,12 +129,11 @@ To run tests, run the following command:
 
 ### Deployment
 
-You can deploy this project using:
+You can deploy this project using: vercel
 
 
 ```sh
   npm run deploy
-
 ```
 
 
