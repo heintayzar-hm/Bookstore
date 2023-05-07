@@ -1,0 +1,37 @@
+// Vitest Snapshot v1
+
+exports[`Books > renders the initial state correctly 1`] = `
+<div>
+  <ul />
+  <article
+    data-testid="form-container"
+  >
+    <h2>
+      Add New Book
+    </h2>
+    <form>
+      <input
+        data-testid="book-title-input"
+        name="title"
+        placeholder="Book Title"
+        required=""
+        type="text"
+        value=""
+      />
+      <input
+        data-testid="author-title-input"
+        name="author"
+        placeholder="Author"
+        required=""
+        type="text"
+        value=""
+      />
+      <button
+        type="submit"
+      >
+        Add Book
+      </button>
+    </form>
+  </article>
+</div>
+`;
